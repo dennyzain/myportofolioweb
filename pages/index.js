@@ -30,7 +30,7 @@ export default function Home() {
 
   useEffect(() => {
     requestAnimationFrame(() => skewScrolling());
-  }, []);
+  }, [height]);
 
   useEffect(() => {
     document.body.style.height = `${scrollContainer.current.getBoundingClientRect().height}px`;
