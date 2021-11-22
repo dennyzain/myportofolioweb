@@ -1,16 +1,17 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@font-face {
+  font-family: 'monument_extendedregular';
+  src: url('/regular-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 * {
-  box-sizing: border-box;
+  font-family: 'monument_extendedregular', 'Courier New', Courier, monospace;
+}
+
+body {
+  overscroll-behavior-y: none;
+}
+
+.circular-progressive {
+  border-radius: 50%;
 }
