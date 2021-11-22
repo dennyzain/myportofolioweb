@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import router from 'next/router';
 import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { useScrollYPosition } from 'react-use-scroll-position';
 // local
 import Footer from '../components/atoms/Footer';
 import Header from '../components/atoms/Header';
