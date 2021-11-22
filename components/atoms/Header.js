@@ -9,6 +9,11 @@ export default function Header() {
   const [scrollP, setScrollP] = useState(0);
   const [height, width] = useWindowSize();
 
+  useEffect(() => {
+    window.addEventListener('scroll', progressCircularPageScroll);
+    return () => window.removeEventListener('scroll', progressCircularPageScroll);
+  }, [height]);
+
   const handleChangeIsOpen = () => {
     setstate({ isOpen: !state.isOpen });
   };
@@ -19,12 +24,8 @@ export default function Header() {
     let scrollPercentRounded = Math.round(scrollPercent * 100);
     let degrees = scrollPercent * 360;
     setScrollP(scrollPercentRounded);
-    circularScroll.current.style.background = `conic-gradient(#498 ${degrees}deg, #ddd ${degrees}deg)`;
+    circularScroll.current.style.background = `conic-gradient(#753188 ${degrees}deg, #ddd ${degrees}deg)`;
   };
-  useEffect(() => {
-    window.addEventListener('scroll', progressCircularPageScroll);
-    return () => window.removeEventListener('scroll', progressCircularPageScroll);
-  }, [height]);
 
   return (
     <>
@@ -82,8 +83,10 @@ export default function Header() {
             <div
               ref={circularScroll}
               className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 w-16 h-16 circular-progressive relative text-sm"
-            >
-              {scrollP}
+            ></div>
+            <div className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 w-14 h-14 circular-progressive z-20 bg-black text-white text-center"></div>
+            <div className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 z-20  text-white ">
+              <p>{scrollP}</p>
             </div>
           </div>
         </div>

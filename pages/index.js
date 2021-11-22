@@ -10,16 +10,16 @@ import useWindowSize from '../components/hooks/useWindowSize';
 
 const container = {
   initial: { x: -200, opacity: 0 },
-  animate: { x: 0, opacity: 1, transition: { duration: 2 } },
+  animate: { x: 0, opacity: 1, transition: { duration: 2, delay: 0.7 } },
   exit: {
     opacity: 0,
+    transition: { duration: 1, delay: 1 },
   },
 };
 
 export default function Home() {
   const controls = useAnimation();
   const [height, width] = useWindowSize();
-  const wrapper = useRef();
   const scrollContainer = useRef();
   const data = {
     ease: 0.1,
@@ -27,10 +27,12 @@ export default function Home() {
     previous: 0,
     rounded: 0,
   };
+  useEffect(() => {
+    requestAnimationFrame(() => skewScrolling());
+  }, [height]);
 
   useEffect(() => {
     document.body.style.height = `${scrollContainer.current.getBoundingClientRect().height}px`;
-    requestAnimationFrame(() => skewScrolling());
   }, [height]);
 
   const skewScrolling = () => {
@@ -56,7 +58,6 @@ export default function Home() {
 
   return (
     <motion.div
-      ref={wrapper}
       variants={container}
       initial="initial"
       animate="animate"
