@@ -2,11 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import router from 'next/router';
 import { motion, useAnimation } from 'framer-motion';
 // local
+import About from '../components/atoms/About';
 import Footer from '../components/atoms/Footer';
 import Header from '../components/atoms/Header';
-import ContentItem from '../components/atoms/ContentItem';
 import Hero from '../components/atoms/Hero';
 import useWindowSize from '../components/hooks/useWindowSize';
+import Portofolio from '../components/atoms/Portofolio';
 
 const container = {
   initial: { x: -200, opacity: 0 },
@@ -28,7 +29,7 @@ export default function Home() {
     rounded: 0,
   };
   useEffect(() => {
-    requestAnimationFrame(() => skewScrolling());
+    window.requestAnimationFrame(() => skewScrolling());
   }, [height]);
 
   useEffect(() => {
@@ -42,7 +43,6 @@ export default function Home() {
     data.previous += (data.current - data.previous) * data.ease;
     // Set rounded to
     data.rounded = Math.round(data.previous * 100) / 100;
-
     // Difference between
     const difference = data.current - data.rounded;
     const acceleration = difference / width;
@@ -53,7 +53,7 @@ export default function Home() {
     scrollContainer.current.style.transform = `translate3d(0, -${data.rounded}px, 0) skewY(${skew}deg)`;
 
     //loop vai raf
-    requestAnimationFrame(() => skewScrolling());
+    window.requestAnimationFrame(() => skewScrolling());
   };
 
   return (
@@ -66,24 +66,8 @@ export default function Home() {
       <Header />
       <div ref={scrollContainer} className="relative">
         <Hero />
-        <motion.div>
-          <ContentItem
-            variant="text-right justify-end"
-            title="About"
-            content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam reprehenderit eius quae ratione repudiandae! Porro numquam repellendus ratione consequatur nam?"
-            href={() => router.push('/about')}
-            img="/unsplash2.png"
-          />
-        </motion.div>
-        <motion.div>
-          <ContentItem
-            variant="text-left justify-start"
-            title="Portofolio"
-            content="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, facilis!"
-            href={() => router.push('/portofolio')}
-            img="/unsplash.png"
-          />
-        </motion.div>
+        <About />
+        <Portofolio />
         <Footer />
       </div>
     </motion.div>

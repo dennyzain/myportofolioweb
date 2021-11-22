@@ -30,7 +30,7 @@ export default function Header() {
   return (
     <>
       {state.isOpen ? (
-        <div className="fixed bg-black text-white z-50  w-full h-full">
+        <div className="fixed bg-white text-black z-50  w-full h-full">
           <div className="bg-transparent animate-colorGradient flex justify-between w-full">
             <div className="text-xs m-5">
               <p>Denny Abbas Zain</p>
@@ -51,7 +51,7 @@ export default function Header() {
         </div>
       ) : (
         <div>
-          <div className=" bg-transparent animate-colorGradient text-black flex fixed z-50  justify-between w-full">
+          <div className=" bg-transparent animate-colorGradient text-white flex fixed z-50  justify-between w-full">
             <div className="text-xs m-5">
               <p>Denny Abbas Zain</p>
             </div>

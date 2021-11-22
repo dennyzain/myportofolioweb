@@ -3,11 +3,16 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      borderColor: (theme) => ({
+        ...theme('colors'),
+        DEFAULT: theme('colors.gray.300', 'currentColor'),
+        primary: '#753188',
+      }),
       fontFamily: {
         Monument: 'Monument',
       },
       animation: {
-        colorGradient: 'gradient 1s cubic-bezier(0.43, 0.41, 0.09, 0.93) ',
+        colorGradient: 'gradient 3s cubic-bezier(0.43, 0.41, 0.09, 0.93) ',
       },
       keyframes: {
         gradient: {

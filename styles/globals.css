@@ -9,10 +9,11 @@
 }
 
 body {
+  color: white;
+  background-color: black;
   overscroll-behavior-y: none;
 }
 
 .circular-progressive {
   border-radius: 50%;
-  color: #ddd;
 }

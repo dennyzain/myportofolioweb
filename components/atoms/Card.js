@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Card({ thumbnail, featured, title }) {
   return (
-    <div className="rounded-lg border-2 text-center border-black mt-1 bg-gray-500 w-19 ">
+    <div className="text-center border-primary border my-2  w-19 ">
       <div>
         <Image
           src={thumbnail}
@@ -21,8 +21,10 @@ export default function Card({ thumbnail, featured, title }) {
             <Image
               src={data.image}
               alt={data.image}
-              width={30}
-              height={30}
+              width={25}
+              height={25}
+              quality={80}
+              layout="fixed"
               className="rounded-t-lg object-contain"
             />
             <p className="text-xs ">{data.name}</p>
