@@ -18,11 +18,9 @@ const container = {
 
 export default function Home() {
   const controls = useAnimation();
-  const yScroll = useScrollYPosition();
   const [height, width] = useWindowSize();
   const wrapper = useRef();
   const scrollContainer = useRef();
-  const { ref, inView } = useInView();
   const data = {
     ease: 0.1,
     current: 0,
