@@ -52,7 +52,7 @@ export default function Home() {
     const skew = velocity * 7.5;
 
     //Assign skew and smooth scrolling to the scroll container
-    scrollContainer.current.style.transform = `translate3d(0, -${data.rounded}px, 0) skewY(${skew}deg)`;
+    scrollContainer.current.style.transform = `translate3d(0, -${data.rounded}px, 0) `;
 
     //loop vai raf
     window.requestAnimationFrame(() => skewScrolling());
@@ -66,7 +66,7 @@ export default function Home() {
       className="h-full w-full top-0 left-0 fixed overflow-hidden "
     >
       <Header />
-      <div ref={scrollContainer} className="relative">
+      <div ref={scrollContainer}>
         <Hero />
         <About />
         <Portofolio />
