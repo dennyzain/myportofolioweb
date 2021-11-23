@@ -6,8 +6,10 @@ import About from '../components/atoms/About';
 import Footer from '../components/atoms/Footer';
 import Header from '../components/atoms/Header';
 import Hero from '../components/atoms/Hero';
-import useWindowSize from '../components/hooks/useWindowSize';
 import Portofolio from '../components/atoms/Portofolio';
+import Certificates from '../components/atoms/Certificates';
+import Contacts from '../components/atoms/Contacts';
+import useWindowSize from '../components/hooks/useWindowSize';
 
 const container = {
   initial: { x: -200, opacity: 0 },
@@ -68,6 +70,8 @@ export default function Home() {
         <Hero />
         <About />
         <Portofolio />
+        <Certificates />
+        <Contacts />
         <Footer />
       </div>
     </motion.div>

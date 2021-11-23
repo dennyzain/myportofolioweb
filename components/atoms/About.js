@@ -1,11 +1,12 @@
 import React from 'react';
+import style from '../../styles/animate.module.css';
 import CardSm from '../molecules/CardSm';
 
 export default function About() {
   return (
-    <div className=" flex justify-center  flex-col mx-6 ">
+    <div className="flex flex-col mx-6 ">
       <section>
-        <h1 className="text-3xl mb-3">ABOUT</h1>
+        <h1 className={`${style.animate}  text-3xl mb-3 `}>ABOUT</h1>
         <p>
           I&apos;m a self taught web developer focused on building useful websites. I&apos;m so
           excited about new things both learning and experience.
@@ -26,6 +27,7 @@ export default function About() {
             <CardSm pic="/html.png" text="HTML5" />
             <CardSm pic="/css.png" text="CSS3" />
             <CardSm pic="/react.png" text="React" />
+            <CardSm pic="/next.svg" text="Next" />
             <CardSm pic="/tailwind.png" text="TailwindCSS" />
             <CardSm pic="/sass.png" text="Sass" />
             <CardSm pic="/firebase.png" text="Firebase" />
@@ -43,12 +45,12 @@ export default function About() {
         </section>
       </section>
       <section>
-        <h1 className="text-3xl">EXPERIENCE</h1>
+        <h1 className={`${style.animate} text-3xl mb-3 mt-7`}>EXPERIENCE</h1>
         <div className="border-l-2 border-primary pl-2 mb-3">
           <p className="text-sm"> 2018-Network Engineer at Dinas Kesehatan Kota Bogor</p>
         </div>
         <div className="border-l-2 border-primary pl-2 mb-3">
-          <p className="text-sm"> 2020-Freelancer </p>
+          <p className="text-sm"> 2020-Freelance as Web Developer </p>
         </div>
       </section>
     </div>
