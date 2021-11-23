@@ -44,7 +44,7 @@ export default function Home() {
     // Set Previous to the scroll previous position
     data.previous += (data.current - data.previous) * data.ease;
     // Set rounded to
-    data.rounded = Math.round(data.previous * 100) / 100;
+    data.rounded = Math.ceil(data.previous * 100) / 100;
     // Difference between
     const difference = data.current - data.rounded;
     const acceleration = difference / width;
@@ -52,7 +52,7 @@ export default function Home() {
     const skew = velocity * 7.5;
 
     //Assign skew and smooth scrolling to the scroll container
-    scrollContainer.current.style.transform = `translate3d(0, -${data.rounded}px, 0) `;
+    scrollContainer.current.style.transform = `translate3d(0, -${data.rounded}px, 0) skewY(${skew}deg)`;
 
     //loop vai raf
     window.requestAnimationFrame(() => skewScrolling());

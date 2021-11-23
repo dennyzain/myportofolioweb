@@ -8,6 +8,10 @@
   font-family: 'monument_extendedregular', 'Courier New', Courier, monospace;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: white;
   background-color: black;
