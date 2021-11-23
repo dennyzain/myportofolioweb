@@ -44,13 +44,12 @@ export default function Home() {
     // Set Previous to the scroll previous position
     data.previous += (data.current - data.previous) * data.ease;
     // Set rounded to
-    data.rounded = Math.ceil(data.previous * 100) / 100;
+    data.rounded = (data.previous * 100) / 100;
     // Difference between
     const difference = data.current - data.rounded;
     const acceleration = difference / width;
     const velocity = +acceleration;
     const skew = velocity * 7.5;
-
     //Assign skew and smooth scrolling to the scroll container
     scrollContainer.current.style.transform = `translate3d(0, -${data.rounded}px, 0) skewY(${skew}deg)`;
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useLayoutEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaFacebookF, FaGithub, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import useWindowSize from '../hooks/useWindowSize';
@@ -9,7 +9,7 @@ export default function Header() {
   const [scrollP, setScrollP] = useState(0);
   const [height, width] = useWindowSize();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.addEventListener('scroll', progressCircularPageScroll);
     return () => window.removeEventListener('scroll', progressCircularPageScroll);
   }, [height]);
@@ -26,7 +26,6 @@ export default function Header() {
     setScrollP(scrollPercentRounded);
     circularScroll.current.style.background = `conic-gradient(#753188 ${degrees}deg, #ddd ${degrees}deg)`;
   };
-  console.log(state.isContact);
   return (
     <>
       {state.isOpen ? (
