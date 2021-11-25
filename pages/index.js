@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useLayoutEffect, useRef } from 'react';
 import router from 'next/router';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 // local
@@ -22,11 +22,11 @@ export default function Home() {
     previous: 0,
     rounded: 0,
   };
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.requestAnimationFrame(() => skewScrolling());
-  }, [height]);
+  }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.body.style.height = `${scrollContainer.current.getBoundingClientRect().height}px`;
   }, [height]);
 
@@ -60,6 +60,7 @@ export default function Home() {
   return (
     <>
       {' '}
+      z
       <div ref={app} className="h-full w-full top-0 left-0 fixed overflow-hidden ">
         <Header />
         <div ref={scrollContainer}>
