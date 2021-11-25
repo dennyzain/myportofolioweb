@@ -24,7 +24,7 @@ export default function Home() {
   };
   useLayoutEffect(() => {
     window.requestAnimationFrame(() => skewScrolling());
-  }, []);
+  }, [height]);
 
   useLayoutEffect(() => {
     document.body.style.height = `${scrollContainer.current.getBoundingClientRect().height}px`;
