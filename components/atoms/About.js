@@ -6,7 +6,7 @@ export default function About() {
   return (
     <div className="flex flex-col mx-6 ">
       <section>
-        <h1 className={`${style.animate}  text-3xl mb-3 `}>ABOUT</h1>
+        <h1 className="text-3xl mb-3">ABOUT</h1>
         <p>
           I&apos;m a self taught web developer focused on building useful websites. I&apos;m so
           excited about new things both learning and experience.
@@ -17,35 +17,35 @@ export default function About() {
         <section>
           <p>programming languages</p>
           <div className="flex my-1">
-            <CardSm pic="/js.png" />
-            <CardSm pic="/typescript.png" />
+            <CardSm pic="/javascript.svg" />
+            <CardSm pic="/typescript.svg" />
           </div>
         </section>
         <section>
           <p>technologies</p>
           <div className="flex flex-wrap justify-start my-1">
-            <CardSm pic="/html.png" text="HTML5" />
-            <CardSm pic="/css.png" text="CSS3" />
-            <CardSm pic="/react.png" text="React" />
+            <CardSm pic="/html.svg" text="HTML5" />
+            <CardSm pic="/css.svg" text="CSS3" />
+            <CardSm pic="/react.svg" text="React" />
             <CardSm pic="/next.svg" text="Next" />
-            <CardSm pic="/tailwind.png" text="TailwindCSS" />
-            <CardSm pic="/sass.png" text="Sass" />
-            <CardSm pic="/firebase.png" text="Firebase" />
-            <CardSm pic="/mysql.png" text="MYSQL" />
-            <CardSm pic="/webpack.png" text="Webpack" />
+            <CardSm pic="/tailwind.svg" text="TailwindCSS" />
+            <CardSm pic="/sass.svg" text="Sass" />
+            <CardSm pic="/firebase.svg" text="Firebase" />
+            <CardSm pic="/mysql.svg" text="MYSQL" />
+            <CardSm pic="/webpack.svg" text="Webpack" />
           </div>
         </section>
         <section>
           <p>currently learn</p>
           <div className="flex my-1">
-            <CardSm pic="/express.png" text="Express" />
-            <CardSm pic="/mongodb.png" text="MongoDB" />
-            <CardSm pic="/vue.png" text="Vue" />
+            <CardSm pic="/expressjs.svg" text="Express" />
+            <CardSm pic="/mongodb.svg" text="MongoDB" />
+            <CardSm pic="/vue.svg" text="Vue" />
           </div>
         </section>
       </section>
       <section>
-        <h1 className={`${style.animate} text-3xl mb-3 mt-7`}>EXPERIENCE</h1>
+        <h1 className="text-3xl mb-3 mt-7">EXPERIENCE</h1>
         <div className="border-l-2 border-primary pl-2 mb-3">
           <p className="text-sm"> 2018-Network Engineer at Dinas Kesehatan Kota Bogor</p>
         </div>

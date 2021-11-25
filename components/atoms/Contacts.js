@@ -1,10 +1,20 @@
-import React from 'react';
-import style from '../../styles/animate.module.css';
+import React, { useContext } from 'react';
+import { motion } from 'framer-motion';
+import { Context } from '../context/useContext';
 
 export default function Contacts() {
+  const { state, dispatch } = useContext(Context);
   return (
-    <div className="mx-6">
-      <h1 className={`${style.animate} text-3xl mb-3 mt-7`}>CONTACTS</h1>
-    </div>
+    <motion.div
+      onViewportEnter={() => dispatch({ type: 'inViewContact', payload: true })}
+      onViewportLeave={() => dispatch({ type: 'inViewContact', payload: false })}
+      className="mx-6"
+    >
+      <h1 className=" text-3xl mb-3 mt-7">CONTACTS</h1>
+      <p>FACEBOOK</p>
+      <p>INSTAGRAM</p>
+      <p>GITHUB</p>
+      <p>EMAIL</p>
+    </motion.div>
   );
 }

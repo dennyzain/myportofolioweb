@@ -7,9 +7,10 @@ export default function Card({ thumbnail, featured, title }) {
       <div>
         <Image
           src={thumbnail}
-          quality={100}
+          quality={90}
           alt={thumbnail}
           width={350}
+          priority={true}
           height={200}
           className="rounded-t-lg object-contain"
         />
@@ -23,7 +24,7 @@ export default function Card({ thumbnail, featured, title }) {
               alt={data.image}
               width={25}
               height={25}
-              quality={80}
+              quality={70}
               layout="fixed"
               className="rounded-t-lg object-contain"
             />

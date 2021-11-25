@@ -1,22 +1,29 @@
-import React, { useState, useLayoutEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useLayoutEffect, useRef, useContext } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaFacebookF, FaGithub, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import useWindowSize from '../hooks/useWindowSize';
+import { Context } from '../context/useContext';
 
 export default function Header() {
+  const { state, dispatch } = useContext(Context);
   const circularScroll = useRef();
-  const [state, setstate] = useState({ isOpen: false, isContact: false });
   const [scrollP, setScrollP] = useState(0);
   const [height, width] = useWindowSize();
+
+  const container = {
+    initial: { y: 200, opacity: 0 },
+    animate: { y: 0, opacity: 1, transition: { duration: 1, delay: 0.2 } },
+    exit: {
+      opacity: 0,
+      transition: { duration: 1, delay: 0.2 },
+    },
+  };
 
   useLayoutEffect(() => {
     window.addEventListener('scroll', progressCircularPageScroll);
     return () => window.removeEventListener('scroll', progressCircularPageScroll);
   }, [height]);
 
-  const handleChangeIsOpen = () => {
-    setstate({ ...state, isOpen: !state.isOpen });
-  };
   const progressCircularPageScroll = () => {
     const scrollTop = window.scrollY;
     const offsetHeight = document.body.offsetHeight;
@@ -28,81 +35,95 @@ export default function Header() {
   };
   return (
     <>
-      {state.isOpen ? (
-        <div className="fixed bg-white text-black z-50  w-full h-full">
-          <div className="bg-transparent animate-colorGradient flex justify-between w-full">
-            <div className="text-xs m-5">
-              <p>Denny Abbas Zain</p>
+      <AnimatePresence>
+        {state.isOpen && (
+          <motion.div
+            initial={{ x: -200, opacity: 0 }}
+            animate={{ x: 0, opacity: 1, transition: { duration: 1, delay: 0.2 } }}
+            exit={{
+              opacity: 0,
+            }}
+            className="fixed bg-white text-black z-50  w-full h-full"
+          >
+            <div className="bg-transparent  flex justify-between w-full">
+              <div className="text-xs m-5">
+                <p>Denny Abbas Zain</p>
+              </div>
+              <div
+                onClick={() => dispatch({ type: 'isOpenMenu' })}
+                onKeyPress={() => dispatch({ type: 'isOpenMenu' })}
+                className="text-xs m-5"
+              >
+                <p className="cursor-pointer">Close</p>
+              </div>
             </div>
-            <div
-              onClick={() => handleChangeIsOpen()}
-              onKeyPress={() => handleChangeIsOpen()}
-              className="text-xs m-5"
-            >
-              <p className="cursor-pointer">Close</p>
+            <div className="text-5xl  -mt-8 flex justify-center items-center h-full flex-col">
+              <p className=" mb-4 cursor-pointer ">About</p>
+              <p className="mb-4 cursor-pointer ">Portofolio</p>
+              <p className="mb-4 cursor-pointer ">Contacts</p>
             </div>
-          </div>
-          <div className="text-5xl animate-colorGradient -mt-8 flex justify-center items-center h-full flex-col">
-            <p className=" mb-4 cursor-pointer ">About</p>
-            <p className="mb-4 cursor-pointer ">Portofolio</p>
-            <p className="mb-4 cursor-pointer ">Contacts</p>
-          </div>
-        </div>
-      ) : (
-        <div>
-          <div className=" bg-transparent animate-colorGradient text-white flex fixed z-50  justify-between w-full">
-            <div className="text-xs m-5">
-              <p>Denny Abbas Zain</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {!state.isOpen && (
+          <motion.div
+            initial={{ x: -200, opacity: 0 }}
+            animate={{ x: 0, opacity: 1, transition: { duration: 1 } }}
+            exit={{
+              opacity: 0,
+              transition: { duration: 1 },
+            }}
+          >
+            <div className=" bg-transparent  text-white flex fixed z-50  justify-between w-full">
+              <div className="text-xs m-5">
+                <p>Denny Abbas Zain</p>
+              </div>
+              <div
+                onClick={() => dispatch({ type: 'isOpenMenu' })}
+                onKeyPress={() => dispatch({ type: 'isOpenMenu' })}
+                role="button"
+                className="text-xs m-5"
+              >
+                <p className="cursor-pointer">Menu</p>
+              </div>
             </div>
-            <div
-              onClick={() => handleChangeIsOpen()}
-              onKeyPress={() => handleChangeIsOpen()}
-              role="button"
-              className="text-xs m-5"
-            >
-              <p className="cursor-pointer">Menu</p>
+            <div className="bottom-0 grid grid-cols-6 grid-rows-2 gap-2 mb-3 text-xl w-full z-40 fixed ">
+              <AnimatePresence>
+                {!state.isContact && (
+                  <motion.div
+                    initial={{ x: -200, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1, transition: { duration: 0.7 } }}
+                    exit={{ x: -200, opacity: 0, transition: { duration: 0.7 } }}
+                    className="row-span-2 row-start-1 col-span-4 col-start-1 flex justify-self-center self-center"
+                  >
+                    <a className="mx-5" href="http://">
+                      <FaFacebookF />
+                    </a>
+                    <a className="mx-5" href="http://">
+                      <FaInstagram />
+                    </a>
+                    <a className="mx-5" href="http://">
+                      <FaGithub />
+                    </a>
+                    <a className="mx-5 animate-bounce" href="http://">
+                      <FaEnvelope />
+                    </a>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              <div
+                ref={circularScroll}
+                className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 w-16 h-16 circular-progressive relative text-sm"
+              ></div>
+              <div className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 w-14 h-14 circular-progressive z-20 bg-black text-white text-center"></div>
+              <div className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 z-20  text-white ">
+                <p>{scrollP}</p>
+              </div>
             </div>
-          </div>
-          <div className="bottom-0 grid grid-cols-6 grid-rows-2 gap-2 mb-3 text-xl w-full z-40 fixed animate-colorGradient">
-            {!state.isContact && (
-              <>
-                <a
-                  className="row-span-2 col-start-1 self-center justify-self-center"
-                  href="http://"
-                >
-                  <FaFacebookF />
-                </a>
-                <a
-                  className="row-span-2 col-start-2 self-center justify-self-center"
-                  href="http://"
-                >
-                  <FaInstagram />
-                </a>
-                <a
-                  className="row-span-2 col-start-3 self-center justify-self-center"
-                  href="http://"
-                >
-                  <FaGithub />
-                </a>
-                <a
-                  className="row-span-2 row-start-1 col-start-4 self-center justify-self-center animate-bounce"
-                  href="http://"
-                >
-                  <FaEnvelope />
-                </a>
-              </>
-            )}
-            <div
-              ref={circularScroll}
-              className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 w-16 h-16 circular-progressive relative text-sm"
-            ></div>
-            <div className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 w-14 h-14 circular-progressive z-20 bg-black text-white text-center"></div>
-            <div className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 z-20  text-white ">
-              <p>{scrollP}</p>
-            </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

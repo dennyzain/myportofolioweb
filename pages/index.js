@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import router from 'next/router';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 // local
 import About from '../components/atoms/About';
 import Footer from '../components/atoms/Footer';
@@ -10,15 +10,6 @@ import Portofolio from '../components/atoms/Portofolio';
 import Certificates from '../components/atoms/Certificates';
 import Contacts from '../components/atoms/Contacts';
 import useWindowSize from '../components/hooks/useWindowSize';
-
-const container = {
-  initial: { x: -200, opacity: 0 },
-  animate: { x: 0, opacity: 1, transition: { duration: 2, delay: 0.7 } },
-  exit: {
-    opacity: 0,
-    transition: { duration: 1, delay: 1 },
-  },
-};
 
 export default function Home() {
   const controls = useAnimation();
@@ -44,7 +35,7 @@ export default function Home() {
     // Set Previous to the scroll previous position
     data.previous += (data.current - data.previous) * data.ease;
     // Set rounded to
-    data.rounded = (data.previous * 100) / 100;
+    data.rounded = (data.previous * 100 + 1) / 100;
     // Difference between
     const difference = data.current - data.rounded;
     const acceleration = difference / width;
@@ -58,21 +49,18 @@ export default function Home() {
   };
 
   return (
-    <motion.div
-      variants={container}
-      initial="initial"
-      animate="animate"
-      className="h-full w-full top-0 left-0 fixed overflow-hidden "
-    >
-      <Header />
-      <div ref={scrollContainer}>
-        <Hero />
-        <About />
-        <Portofolio />
-        <Certificates />
-        <Contacts />
-        <Footer />
-      </div>
-    </motion.div>
+    <>
+      {' '}
+      <ediv className="h-full w-full top-0 left-0 fixed overflow-hidden ">
+        <Header />
+        <div ref={scrollContainer}>
+          <Hero />
+          <About />
+          <Portofolio />
+          <Contacts />
+          <Footer />
+        </div>
+      </ediv>
+    </>
   );
 }
