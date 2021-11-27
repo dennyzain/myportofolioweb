@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import router from 'next/router';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 // local
@@ -14,7 +14,6 @@ import useWindowSize from '../components/hooks/useWindowSize';
 export default function Home() {
   const controls = useAnimation();
   const [height, width] = useWindowSize();
-  const app = useRef();
   const scrollContainer = useRef();
   const data = {
     ease: 0.1,
@@ -22,11 +21,11 @@ export default function Home() {
     previous: 0,
     rounded: 0,
   };
-  useLayoutEffect(() => {
+  useEffect(() => {
     window.requestAnimationFrame(() => skewScrolling());
   }, [height]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     document.body.style.height = `${scrollContainer.current.getBoundingClientRect().height}px`;
   }, [height]);
 
@@ -49,31 +48,17 @@ export default function Home() {
     window.requestAnimationFrame(() => skewScrolling());
   };
 
-  const images = [
-    'https://images.unsplash.com/photo-1551392505-f4056032826e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1497&q=80',
-    'https://images.unsplash.com/photo-1594312180721-3b5217cfc65f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
-    'https://images.unsplash.com/photo-1593806812862-1dc510b769a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2851&q=80',
-    'https://images.unsplash.com/photo-1558507652-2d9626c4e67a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
-    'https://images.unsplash.com/photo-1484517186945-df8151a1a871?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=987&q=80',
-    'https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
-  ];
   return (
     <>
       {' '}
-      z
-      <div ref={app} className="h-full w-full top-0 left-0 fixed overflow-hidden ">
+      <div className="h-full w-full top-0 left-0 fixed overflow-hidden ">
         <Header />
         <div ref={scrollContainer}>
-          {images.map((image, index) => (
-            <>
-              <div key={index} className="m-20 ">
-                <img src={image} alt={`people ${index}`} />
-              </div>
-              <h2>
-                Skew <span className="m-4">Scrolling</span>
-              </h2>
-            </>
-          ))}
+          <Hero />
+          <About />
+          <Portofolio />
+          <Contacts />
+          <Footer />
         </div>
       </div>
     </>

@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaFacebookF, FaGithub, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import useWindowSize from '../hooks/useWindowSize';
@@ -19,7 +19,7 @@ export default function Header() {
     },
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     window.addEventListener('scroll', progressCircularPageScroll);
     return () => window.removeEventListener('scroll', progressCircularPageScroll);
   }, [height]);
