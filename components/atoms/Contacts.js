@@ -1,11 +1,15 @@
 import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
 import { Context } from '../context/useContext';
+import { container } from '../presetAnimate/animate';
 
 export default function Contacts() {
   const { state, dispatch } = useContext(Context);
   return (
     <motion.div
+      variants={container}
+      initial="initial"
+      whileInView="animate"
       onViewportEnter={() => dispatch({ type: 'inViewContact', payload: true })}
       onViewportLeave={() => dispatch({ type: 'inViewContact', payload: false })}
       className="mx-6 mb-5"

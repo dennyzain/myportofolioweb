@@ -1,7 +1,10 @@
 .animate {
-  color: #fff;
+  /* color: #fff; */
   background: linear-gradient(50deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #b4d523);
   background-size: 400% 400%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   -webkit-animation: Gradient 15s ease infinite;
   -moz-animation: Gradient 15s ease infinite;
   animation: Gradient 15s ease infinite;
