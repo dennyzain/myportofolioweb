@@ -24,7 +24,7 @@ export default function Home() {
   // Run scroll render once page is loaded.
   useEffect(() => {
     requestAnimationFrame(() => skewScrolling());
-  }, []);
+  }, [height]);
 
   //set the height of the body.
   useEffect(() => {
