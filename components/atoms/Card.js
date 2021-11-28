@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 
-export default function Card({ thumbnail, featured, title }) {
+export default function Card({ thumbnail, title }) {
   return (
-    <div className="text-center border-primary border my-2  w-19 ">
+    <div className="text-center mt-2 mb-10 w-19 ">
       <div>
         <Image
           src={thumbnail}
@@ -11,27 +11,11 @@ export default function Card({ thumbnail, featured, title }) {
           alt={thumbnail}
           width={350}
           priority={true}
-          height={200}
-          className="rounded-t-lg object-contain"
+          height={150}
+          className="object-contain"
         />
       </div>
-      <p>{title}</p>
-      <div className="flex justify-center">
-        {featured.map((data) => (
-          <div key={data.image} className="m-1 text-center w-20">
-            <Image
-              src={data.image}
-              alt={data.image}
-              width={25}
-              height={25}
-              quality={70}
-              layout="fixed"
-              className="rounded-t-lg object-contain"
-            />
-            <p className="text-xs ">{data.name}</p>
-          </div>
-        ))}
-      </div>
+      <p className="text-2xl">{title}</p>
     </div>
   );
 }

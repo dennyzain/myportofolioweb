@@ -65,65 +65,63 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-      <AnimatePresence>
-        {!state.isOpen && (
-          <motion.div
-            initial={{ x: -200, opacity: 0 }}
-            animate={{ x: 0, opacity: 1, transition: { duration: 1 } }}
-            exit={{
-              opacity: 0,
-              transition: { duration: 1 },
-            }}
-          >
-            <div className=" bg-transparent  text-white flex fixed z-50  justify-between w-full">
-              <div className="text-xs m-5">
-                <p>Denny Abbas Zain</p>
-              </div>
-              <div
-                onClick={() => dispatch({ type: 'isOpenMenu' })}
-                onKeyPress={() => dispatch({ type: 'isOpenMenu' })}
-                role="button"
-                className="text-xs m-5"
-              >
-                <p className="cursor-pointer">Menu</p>
-              </div>
+      {!state.isOpen && (
+        <motion.div
+          initial={{ x: -200, opacity: 0 }}
+          animate={{ x: 0, opacity: 1, transition: { duration: 1 } }}
+          exit={{
+            opacity: 0,
+            transition: { duration: 1 },
+          }}
+        >
+          <div className=" bg-transparent  text-white flex fixed z-50  justify-between w-full">
+            <div className="text-xs m-5">
+              <p>Denny Abbas Zain</p>
             </div>
-            <div className="bottom-0 grid grid-cols-6 grid-rows-2 gap-2 mb-3 text-xl w-full z-40 fixed ">
-              <AnimatePresence>
-                {!state.isContact && (
-                  <motion.div
-                    initial={{ x: -200, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1, transition: { duration: 0.7 } }}
-                    exit={{ x: -200, opacity: 0, transition: { duration: 0.7 } }}
-                    className="row-span-2 row-start-1 col-span-4 col-start-1 flex justify-self-center self-center"
-                  >
-                    <a className="mx-5" href="http://">
-                      <FaFacebookF />
-                    </a>
-                    <a className="mx-5" href="http://">
-                      <FaInstagram />
-                    </a>
-                    <a className="mx-5" href="http://">
-                      <FaGithub />
-                    </a>
-                    <a className="mx-5 animate-bounce" href="http://">
-                      <FaEnvelope />
-                    </a>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              <div
-                ref={circularScroll}
-                className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 w-16 h-16 circular-progressive relative text-sm"
-              ></div>
-              <div className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 w-14 h-14 circular-progressive z-20 bg-black text-white text-center"></div>
-              <div className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 z-20  text-white ">
-                <p>{scrollP}</p>
-              </div>
+            <div
+              onClick={() => dispatch({ type: 'isOpenMenu' })}
+              onKeyPress={() => dispatch({ type: 'isOpenMenu' })}
+              role="button"
+              className="text-xs m-5"
+            >
+              <p className="cursor-pointer">Menu</p>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+          <div className="bottom-0 grid grid-cols-6 grid-rows-2 gap-2 mb-3 text-xl w-full z-40 fixed ">
+            <AnimatePresence>
+              {!state.isContact && (
+                <motion.div
+                  initial={{ x: -200, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1, transition: { duration: 0.7 } }}
+                  exit={{ x: -200, opacity: 0, transition: { duration: 0.7 } }}
+                  className="row-span-2 row-start-1 col-span-4 col-start-1 flex justify-self-center self-center"
+                >
+                  <a className="mx-5" href="http://">
+                    <FaFacebookF />
+                  </a>
+                  <a className="mx-5" href="http://">
+                    <FaInstagram />
+                  </a>
+                  <a className="mx-5" href="http://">
+                    <FaGithub />
+                  </a>
+                  <a className="mx-5 animate-bounce" href="http://">
+                    <FaEnvelope />
+                  </a>
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <div
+              ref={circularScroll}
+              className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 w-16 h-16 circular-progressive relative text-sm"
+            ></div>
+            <div className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 w-14 h-14 circular-progressive z-20 bg-black text-white text-center"></div>
+            <div className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 z-20  text-white ">
+              <p>{scrollP}</p>
+            </div>
+          </div>
+        </motion.div>
+      )}
     </>
   );
 }

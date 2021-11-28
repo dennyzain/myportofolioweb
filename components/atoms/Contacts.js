@@ -8,7 +8,7 @@ export default function Contacts() {
     <motion.div
       onViewportEnter={() => dispatch({ type: 'inViewContact', payload: true })}
       onViewportLeave={() => dispatch({ type: 'inViewContact', payload: false })}
-      className="mx-6"
+      className="mx-6 mb-5"
     >
       <h1 className=" text-3xl mb-3 mt-7">CONTACTS</h1>
       <p>FACEBOOK</p>

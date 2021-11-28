@@ -12,13 +12,15 @@ export default function Portofolio() {
     { name: 'Webpack', image: '/webpack.png' },
   ];
   return (
-    <div className="flex justify-center flex-col mx-6">
-      <h1 className="text-3xl mt-5 mb-1">PORTOFOLIOS</h1>
-      <div>
+    <>
+      <div className=" mx-6">
+        <h1 className="text-3xl mt-5 mb-1">PORTOFOLIOS</h1>
+      </div>
+      <div className="flex flex-col">
         <Card featured={logoFeatures1} title="Notes app" thumbnail="/simple-notes-app.png" />
         <Card featured={logoFeatures2} title="MovieKu " thumbnail="/MovieKu.png" />
         <Card featured={logoFeatures2} title="BookshelfApps" thumbnail="/CRUDvanillajs.png" />
       </div>
-    </div>
+    </>
   );
 }

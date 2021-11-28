@@ -19,7 +19,7 @@ const Provider = ({ children }) => {
   const value = { state, dispatch };
   return (
     <>
-      <Context.Provider value={value}>{children}</Context.Provider>;
+      <Context.Provider value={value}>{children}</Context.Provider>
     </>
   );
 };
