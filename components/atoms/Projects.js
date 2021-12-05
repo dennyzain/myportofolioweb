@@ -1,29 +1,19 @@
 import { motion } from 'framer-motion';
 import Card from './Card';
 import { container } from '../presetAnimate/animate';
+
 export default function Projects() {
-  const logoFeatures1 = [
-    { name: 'React', image: '/react.png' },
-    { name: 'Firebase', image: '/firebase.png' },
-    { name: 'Sass', image: '/sass.png' },
-  ];
-  const logoFeatures2 = [
-    { name: 'Web component', image: '/webcomponent.png' },
-    { name: 'Sass', image: '/sass.png' },
-    { name: 'Webpack', image: '/webpack.png' },
-  ];
   return (
     <>
       <motion.div variants={container} initial="initial" whileInView="animate">
-        <div className=" mx-6">
-          <h1 className="text-3xl mt-5 mb-1">PROJECTS</h1>
+        <div className=" mx-6 md:mx-36 md:text-xs">
+          <h1 className="text-3xl mt-5 mb-1 md:mb-3">PROJECTS</h1>
         </div>
-        <div className="flex flex-col">
-          <Card featured={logoFeatures1} title="Notes app" thumbnail="/simple-notes-app.png" />
-          <Card featured={logoFeatures2} title="MovieKu " thumbnail="/MovieKu.png" />
-          <Card featured={logoFeatures2} title="BookshelfApps" thumbnail="/CRUDvanillajs.png" />
-          <Card featured={logoFeatures2} title="BookshelfApps" thumbnail="/CRUDvanillajs.png" />
-          <Card featured={logoFeatures2} title="BookshelfApps" thumbnail="/CRUDvanillajs.png" />
+        <div className="relative flex justify-center items-center  w-screen h-72">
+          <Card />
+        </div>
+        <div className="flex justify-center">
+          <p>swipe</p>
         </div>
       </motion.div>
     </>

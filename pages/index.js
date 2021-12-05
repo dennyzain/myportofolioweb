@@ -6,7 +6,7 @@ import About from '../components/atoms/About';
 import Footer from '../components/atoms/Footer';
 import Header from '../components/atoms/Header';
 import Hero from '../components/atoms/Hero';
-import Portofolio from '../components/atoms/Projects';
+import Projects from '../components/atoms/Projects';
 import Contacts from '../components/atoms/Contacts';
 import useWindowSize from '../components/hooks/useWindowSize';
 
@@ -59,12 +59,12 @@ export default function Home() {
   };
   return (
     <>
-      <div className="top-0 left-0 fixed w-full h-full overflow-hidden">
+      <div className="top-0 left-0 bottom-0 right-0 fixed w-full h-full overflow-hidden">
         <Header />
         <div ref={scrollContainer}>
           <Hero />
           <About />
-          <Portofolio />
+          <Projects />
           <Contacts />
           <Footer />
         </div>

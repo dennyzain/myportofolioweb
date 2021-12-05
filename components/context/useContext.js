@@ -3,6 +3,7 @@ import { createContext, useReducer } from 'react';
 const initialState = {
   isContact: false,
   isOpen: false,
+  isDesktop: false,
 };
 const Context = createContext();
 
@@ -28,10 +29,10 @@ function reducer(state, action) {
   switch (action.type) {
     case 'inViewContact':
       return { ...state, isContact: action.payload };
-    case 'outViewContact':
-      return { ...state, isContact: action.payload };
     case 'isOpenMenu':
       return { ...state, isOpen: !state.isOpen };
+    case 'isDesktop':
+      return { ...state, isDesktop: action.payload };
     default:
       return state;
   }

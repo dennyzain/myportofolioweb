@@ -6,19 +6,23 @@ import { container } from '../presetAnimate/animate';
 export default function Contacts() {
   const { state, dispatch } = useContext(Context);
   return (
-    <motion.div
-      variants={container}
-      initial="initial"
-      whileInView="animate"
-      onViewportEnter={() => dispatch({ type: 'inViewContact', payload: true })}
-      onViewportLeave={() => dispatch({ type: 'inViewContact', payload: false })}
-      className="mx-6 mb-5"
-    >
-      <h1 className=" text-3xl mb-3 mt-7">CONTACTS</h1>
-      <p>FACEBOOK</p>
-      <p>INSTAGRAM</p>
-      <p>GITHUB</p>
-      <p>EMAIL</p>
-    </motion.div>
+    <>
+      {!state.isDesktop && (
+        <motion.div
+          variants={container}
+          initial="initial"
+          whileInView="animate"
+          onViewportEnter={() => dispatch({ type: 'inViewContact', payload: true })}
+          onViewportLeave={() => dispatch({ type: 'inViewContact', payload: false })}
+          className="mx-6 mb-5"
+        >
+          <h1 className=" text-3xl mb-3 mt-7">CONTACTS</h1>
+          <p>FACEBOOK</p>
+          <p>INSTAGRAM</p>
+          <p>GITHUB</p>
+          <p>EMAIL</p>
+        </motion.div>
+      )}{' '}
+    </>
   );
 }

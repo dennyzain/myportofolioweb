@@ -9,7 +9,7 @@ export default function CardSm({ pic, text }) {
         alt={text}
         width={50}
         height={50}
-        quality={70}
+        quality={60}
         blurDataURL={pic}
         placeholder="blur"
       />

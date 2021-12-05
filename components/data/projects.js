@@ -1,8 +1,8 @@
-const portofolio = [
+export const Projects = [
   {
     id: 1,
     title: 'MovieKu',
-    image: '/MovieKu.png',
+    image: '/movieku.png',
     desc: 'this website using vanilla js (web component), ',
   },
   {
@@ -14,7 +14,7 @@ const portofolio = [
   {
     id: 3,
     title: 'BookshelfApps',
-    image: '/BookshelfApps.png',
+    image: '/bookshelfvanilla.png',
     desc: 'this website using vanilla javascript ',
   },
 ];

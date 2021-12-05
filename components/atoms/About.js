@@ -1,24 +1,57 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { container } from '../presetAnimate/animate';
+import AnimatedTextContent from '../presetAnimate/AnimatedTextContent';
 import CardSm from '../molecules/CardSm';
 
 export default function About() {
-  const scrollView = useRef();
+  const containerAnimatedText = {
+    visible: {
+      transition: {
+        staggerChildren: 0.075,
+      },
+    },
+  };
+  const item = [
+    {
+      type: 'paragraph',
+      text: `I'm a self taught web developer focused on building useful websites. I'm so excited about new things both learning and experience.`,
+      style: 'text-sm',
+    },
+  ];
+  const experience = [
+    {
+      type: 'paragraph',
+      text: `2018-Network Engineer at Dinas Kesehatan Kota Bogor`,
+      style: 'text-xs',
+    },
+    {
+      type: 'paragraph',
+      text: `2020-Freelance as Web Developer`,
+      style: 'text-xs',
+    },
+  ];
   return (
-    <div ref={scrollView}>
+    <>
       <motion.div
         variants={container}
         initial="initial"
         whileInView="animate"
-        className="flex flex-col mt-5 mx-6 "
+        className="flex flex-col mt-5 mx-6 md:mx-36 md:text-xs "
       >
         <section>
           <h1 className="text-3xl mb-3">ABOUT</h1>
-          <p>
+          <motion.div initial="hidden" whileInView="visible" variants={containerAnimatedText}>
+            <div className="container">
+              {item.map((item, index) => {
+                return <AnimatedTextContent key={index} {...item} />;
+              })}
+            </div>
+          </motion.div>
+          {/* <p>
             I&apos;m a self taught web developer focused on building useful websites. I&apos;m so
             excited about new things both learning and experience.
-          </p>
+          </p> */}
         </section>
         <section>
           <h2 className="text-xl my-3">SKILLS</h2>
@@ -54,14 +87,19 @@ export default function About() {
         </section>
         <section>
           <h1 className="text-3xl mb-3 mt-7">EXPERIENCE</h1>
-          <div className="border-l-2 border-primary pl-2 mb-3">
-            <p className="text-sm"> 2018-Network Engineer at Dinas Kesehatan Kota Bogor</p>
-          </div>
-          <div className="border-l-2 border-primary pl-2 mb-3">
-            <p className="text-sm"> 2020-Freelance as Web Developer </p>
-          </div>
+          <motion.div initial="hidden" whileInView="visible" variants={containerAnimatedText}>
+            <div className="container">
+              {experience.map((item, index) => {
+                return (
+                  <div key={index} className="border-l-2 border-primary pl-2 mb-3">
+                    <AnimatedTextContent {...item} />
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
         </section>
       </motion.div>
-    </div>
+    </>
   );
 }
