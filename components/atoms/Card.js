@@ -29,18 +29,14 @@ const variants = {
   },
 };
 
-const swipeConfidenceThreshold = 15000;
+const swipeConfidenceThreshold = 10000;
+
 const swipePower = (offset, velocity) => {
   return Math.abs(offset) * velocity;
 };
 
 export default function Card() {
   const [[page, direction], setPage] = useState([0, 0]);
-
-  // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
-  // then wrap that within 0-2 to find our image ID in the array below. By passing an
-  // absolute page index as the `motion` component's `key` prop, `AnimatePresence` will
-  // detect it as an entirely new image. So you can infinitely paginate as few as 1 images.
 
   const imageIndex = wrap(0, Projects.length, page);
 
@@ -51,47 +47,53 @@ export default function Card() {
   return (
     <>
       <AnimatePresence initial={false} custom={direction}>
-        <motion.div
-          key={page}
-          custom={direction}
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          whileHover={{ scale: 1.1 }}
-          transition={{
-            x: { type: 'spring', stiffness: 300, damping: 30 },
-            opacity: { duration: 0.7 },
-          }}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-          dragElastic={1}
-          onDragEnd={(e, { offset, velocity }) => {
-            const swipe = swipePower(offset.x, velocity.x);
-
-            if (swipe < -swipeConfidenceThreshold) {
-              paginate(1);
-            } else if (swipe > swipeConfidenceThreshold) {
-              paginate(-1);
-            }
-          }}
-          className="text-center mt-2 mb-10 flex flex-col justify-center  absolute items-center z-10 left-0 top-0 
-          bottom-0 right-0"
+        <div
+          className="mt-2 mx-6 mb-10 flex justify-center  items-center flex-col relative
+          "
         >
-          <Image
+          <motion.img
             src={Projects[imageIndex].image}
-            quality={90}
             alt={Projects[imageIndex].image}
-            blurDataURL={Projects[imageIndex].image}
-            placeholder="blur"
-            width={500}
-            priority={true}
-            height={300}
-            className="object-contain"
+            key={page}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: 'spring', stiffness: 300, damping: 30 },
+              opacity: { duration: 0.7 },
+            }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+            dragElastic={1}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipe = swipePower(offset.x, velocity.x);
+
+              if (swipe < -swipeConfidenceThreshold) {
+                paginate(1);
+              } else if (swipe > swipeConfidenceThreshold) {
+                paginate(-1);
+              }
+            }}
+            className="w-auto h-52"
           />
-          <p className="text-xl text-white  ml-3">{Projects[imageIndex].title}</p>
-        </motion.div>
+
+          <p className="text-xl text-white bottom-5 mt-3">{Projects[imageIndex].title}</p>
+        </div>
       </AnimatePresence>
+      {/* <div
+        className="cursor-pointer top-1/2 relative bg-white text-black right-20 rounded-3xl w-10 h-10 flex justify-center items-center z-20 text-xl "
+        onClick={() => paginate(1)}
+      >
+        {'‣'}
+      </div>
+      <div
+        className="cursor-pointer top-1/2 relative bg-white text-black left-20 transform rotate-180 rounded-3xl w-10 h-10 flex justify-center items-center z-20 text-xl "
+        onClick={() => paginate(-1)}
+      >
+        {'‣'}
+      </div> */}
     </>
   );
 }

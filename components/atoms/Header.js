@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaFacebookF, FaGithub, FaInstagram, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaInstagram, FaEnvelope, FaLinkedin } from 'react-icons/fa';
 import useWindowSize from '../hooks/useWindowSize';
 import { Context } from '../context/useContext';
 
@@ -33,13 +33,18 @@ export default function Header() {
     circularScroll.current.style.background = `conic-gradient(#753188 ${degrees}deg, #ddd ${degrees}deg)`;
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <>
-      <AnimatePresence>
-        {state.isOpen
-          ? navbarAtTrue(dispatch)
-          : navbarAtFalse(state, dispatch, scrollPercent, circularScroll)}
-      </AnimatePresence>
+      {state.isOpen
+        ? navbarAtTrue(dispatch)
+        : navbarAtFalse(state, dispatch, scrollPercent, circularScroll, scrollToTop)}
     </>
   );
 }
@@ -60,20 +65,38 @@ const navbarAtTrue = (dispatch) => {
         </div>
       </div>
       <div className="text-5xl  -mt-8 flex justify-center items-center h-full flex-col">
-        <p className=" mb-4 cursor-pointer ">About</p>
-        <p className="mb-4 cursor-pointer ">Projects</p>
-        <p className="mb-4 cursor-pointer ">Contacts</p>
+        <a
+          onClick={() => dispatch({ type: 'isOpenMenu' })}
+          href="#about"
+          className=" mb-2 cursor-pointer "
+        >
+          About
+        </a>
+        <a
+          onClick={() => dispatch({ type: 'isOpenMenu' })}
+          href="#projects"
+          className=" mb-2 cursor-pointer "
+        >
+          Projects
+        </a>
+        <a
+          onClick={() => dispatch({ type: 'isOpenMenu' })}
+          href="#contacts"
+          className=" mb-2 cursor-pointer "
+        >
+          Contacts
+        </a>
       </div>
     </motion.div>
   );
 };
 
-const navbarAtFalse = (state, dispatch, scrollPercent, circularScroll) => {
+const navbarAtFalse = (state, dispatch, scrollPercent, circularScroll, scrollToTop) => {
   return (
     <motion.div>
       <div className=" bg-transparent  text-white flex fixed z-50  justify-between w-full">
         <div className="text-xs m-5">
-          <p>Denny Abbas Zain</p>
+          <p onClick={scrollToTop}>Denny Abbas Zain</p>
         </div>
         {!state.isDesktop ? (
           <div
@@ -85,20 +108,24 @@ const navbarAtFalse = (state, dispatch, scrollPercent, circularScroll) => {
             <p className="cursor-pointer">Menu</p>
           </div>
         ) : (
-          <div className="text-xs text-right m-5">
-            <p className=" mb-2 cursor-pointer ">About</p>
-            <p className="mb-2 cursor-pointer ">Projects</p>
+          <div className="flex flex-col text-xs text-right m-5">
+            <a href="#about" className=" mb-2 cursor-pointer ">
+              About
+            </a>
+            <a href="#projects" className="mb-2 cursor-pointer ">
+              Projects
+            </a>
           </div>
         )}
       </div>
-      <div className="bottom-0 grid grid-cols-6 grid-rows-2 gap-2 mb-3 text-xl w-full z-40 fixed md:grid-rows-3 ">
+      <div className="bottom-0 grid grid-cols-6 grid-rows-2  gap-2 mb-3 text-xl w-full z-40 fixed md:grid-rows-3 ">
         {contactNav(state)}
         <div
           ref={circularScroll}
-          className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 w-16 h-16 circular-progressive relative text-sm md:row-start-2 md:col-start-6"
+          className="z-30 row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 w-16 h-16 circular-progressive relative text-sm md:row-start-2 md:col-start-6"
         ></div>
-        <div className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 w-14 h-14 circular-progressive z-20 bg-black text-white text-center md:row-start-2 md:col-start-6"></div>
-        <div className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 z-20 md:row-start-2 md:col-start-6 text-white ">
+        <div className=" row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 w-14 h-14 circular-progressive z-40 bg-black text-white text-center md:row-start-2 md:col-start-6"></div>
+        <div className="row-span-2 row-start-1 col-span-2  col-start-5 justify-self-center self-center m-1 p-6 z-40 md:row-start-2 md:col-start-6 text-white ">
           <p>{scrollPercent}</p>
         </div>
       </div>
@@ -116,16 +143,22 @@ const contactNav = (state) => {
           exit={{ x: -200, opacity: 0, transition: { duration: 0.7 } }}
           className="row-span-2 row-start-1 col-span-4 col-start-1 flex justify-self-center self-center md:flex-col md:row-start-2  md:justify-self-start md:col-span-2"
         >
-          <a className="mx-5 md:text-xs md:mb-2 " href="http://">
-            {state.isDesktop ? <p>Facebook</p> : <FaFacebookF />}
-          </a>
-          <a className="mx-5 md:text-xs md:mb-2" href="http://">
+          <a className="mx-5 md:text-xs md:mb-2" href="https://www.instagram.com/abbas_dznx/">
             {state.isDesktop ? <p>Instagram</p> : <FaInstagram />}
           </a>
-          <a className="mx-5 md:text-xs md:mb-2" href="http://">
+          <a className="mx-5 md:text-xs md:mb-2" href="https://github.com/dennyzain">
             {state.isDesktop ? <p>Github</p> : <FaGithub />}
           </a>
-          <a className="mx-5 md:text-xs md:mb-2 animate-bounce" href="http://">
+          <a
+            className="mx-5 md:text-xs md:mb-2"
+            href="https://www.linkedin.com/in/denny-abbas-zain-567552194/"
+          >
+            {state.isDesktop ? <p>LinkedIn</p> : <FaLinkedin />}
+          </a>
+          <a
+            className="mx-5 md:text-xs md:mb-2 animate-bounce"
+            href="mailto:abbasdenny24@gmail.com"
+          >
             {state.isDesktop ? <p>Email</p> : <FaEnvelope />}
           </a>
         </motion.div>

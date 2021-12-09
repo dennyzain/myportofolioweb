@@ -37,6 +37,7 @@ export default function About() {
         variants={container}
         initial="initial"
         whileInView="animate"
+        id="about"
         className="flex flex-col mt-5 mx-6 md:mx-36 md:text-xs "
       >
         <section>

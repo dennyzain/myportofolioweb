@@ -4,7 +4,7 @@ import { FaArrowCircleDown } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { container, item } from '../presetAnimate/animate';
 import { Context } from '../context/useContext';
-import AnimatedText from '../presetAnimate/AnimatedText';
+import AnimatedText from '../presetAnimate/AnimatedTextHero';
 
 import style from '../../styles/animate.module.css';
 
@@ -74,12 +74,6 @@ export default function Hero() {
                 })}
               </div>
             </motion.div>
-            {/* 
-            <div className="mx-2 mt-7 md:text-xl  ">
-              <p>Hi there, Im </p>
-              <span className={` text-xl md:text-2xl ${style.animate}`}>Denny Abbas Zain</span>
-              <p>a web developer based in Bogor, Indonesian.</p>
-            </div> */}
             <div className="mt-5 text-center">
               <p className="text-xs ">scroll down</p>
               <div className="flex justify-center">
