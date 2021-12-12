@@ -1,5 +1,6 @@
 import React from 'react';
 // local
+import Scroll from '../components/utils/SmoothScroll';
 import About from '../components/atoms/About';
 import Footer from '../components/atoms/Footer';
 import Header from '../components/atoms/Header';
@@ -11,11 +12,13 @@ export default function Home() {
   return (
     <>
       <Header />
-      <Hero />
-      <About />
-      <Projects />
-      <Contacts />
-      <Footer />
+      <Scroll>
+        <Hero />
+        <About />
+        <Projects />
+        <Contacts />
+        <Footer />
+      </Scroll>
     </>
   );
 }

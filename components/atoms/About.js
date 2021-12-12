@@ -1,36 +1,11 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { container } from '../presetAnimate/animate';
+import { container, containerAnimatedText } from '../presetAnimate/animate';
+import { about, experience } from '../data/about';
 import AnimatedTextContent from '../presetAnimate/AnimatedTextContent';
 import CardSm from '../molecules/CardSm';
 
 export default function About() {
-  const containerAnimatedText = {
-    visible: {
-      transition: {
-        staggerChildren: 0.075,
-      },
-    },
-  };
-  const item = [
-    {
-      type: 'paragraph',
-      text: `I'm a self taught web developer focused on building useful websites. I'm so excited about new things both learning and experience.`,
-      style: 'text-sm',
-    },
-  ];
-  const experience = [
-    {
-      type: 'paragraph',
-      text: `2018-Network Engineer at Dinas Kesehatan Kota Bogor`,
-      style: 'text-xs',
-    },
-    {
-      type: 'paragraph',
-      text: `2020-Freelance as Web Developer`,
-      style: 'text-xs',
-    },
-  ];
   return (
     <>
       <motion.div
@@ -38,21 +13,17 @@ export default function About() {
         initial="initial"
         whileInView="animate"
         id="about"
-        className="flex flex-col mt-5 mx-6 md:mx-36 md:text-xs "
+        className="flex flex-col mt-5 mx-6 md:mx-36 lg:mx-52 md:text-xs "
       >
         <section>
           <h1 className="text-3xl mb-3">ABOUT</h1>
           <motion.div initial="hidden" whileInView="visible" variants={containerAnimatedText}>
             <div className="container">
-              {item.map((item, index) => {
+              {about.map((item, index) => {
                 return <AnimatedTextContent key={index} {...item} />;
               })}
             </div>
           </motion.div>
-          {/* <p>
-            I&apos;m a self taught web developer focused on building useful websites. I&apos;m so
-            excited about new things both learning and experience.
-          </p> */}
         </section>
         <section>
           <h2 className="text-xl my-3">SKILLS</h2>

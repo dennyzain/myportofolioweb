@@ -2,36 +2,13 @@ import React, { useContext } from 'react';
 import Image from 'next/image';
 import { FaArrowCircleDown } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { container, item } from '../presetAnimate/animate';
 import { Context } from '../context/useContext';
+import { hero } from '../data/hero';
+import { containerAnimatedText, container } from '../presetAnimate/animate';
 import AnimatedText from '../presetAnimate/AnimatedTextHero';
 
-import style from '../../styles/animate.module.css';
-
 export default function Hero() {
-  const { state, dispatch } = useContext(Context);
-
-  const placeholderText = [
-    {
-      type: 'paragraph',
-      text: 'Hi there, im',
-      style: 'md:text-xl text-white ',
-    },
-    { type: 'heading1', text: 'Denny Abbas Zain', style: `text-xl md:text-2xl ${style.animate}` },
-    {
-      type: 'paragraph',
-      text: 'a web developer based in Bogor, Indonesian.',
-      style: 'md:text-xl',
-    },
-  ];
-
-  const containerAnimatedText = {
-    visible: {
-      transition: {
-        staggerChildren: 0.075,
-      },
-    },
-  };
+  const { state } = useContext(Context);
   return (
     <>
       <motion.div
@@ -69,7 +46,7 @@ export default function Hero() {
           <div className="flex flex-col md:ml-8 md:mt-9">
             <motion.div initial="hidden" whileInView="visible" variants={containerAnimatedText}>
               <div className="container">
-                {placeholderText.map((item, index) => {
+                {hero.map((item, index) => {
                   return <AnimatedText {...item} key={index} style={item.style} />;
                 })}
               </div>

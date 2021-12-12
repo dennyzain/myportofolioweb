@@ -1,3 +1,11 @@
+const containerAnimatedText = {
+  visible: {
+    transition: {
+      staggerChildren: 0.075,
+    },
+  },
+};
+
 const container = {
   initial: {
     x: -200,
@@ -25,4 +33,4 @@ const item = {
   },
   exit: { opacity: 0, transition: { duration: 0.7 } },
 };
-export { container, item };
+export { container, item, containerAnimatedText };

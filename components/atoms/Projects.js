@@ -7,10 +7,10 @@ export default function Projects() {
   return (
     <>
       <motion.div id="projects" variants={container} initial="initial" whileInView="animate">
-        <div className=" mx-6 md:mx-36 md:text-xs">
+        <div className=" mx-6 md:mx-36 lg:mx-52 md:text-xs">
           <h1 className="text-3xl mt-5 mb-1 md:mb-3">PROJECTS</h1>
         </div>
-        <div className="flex justify-center items-center overflow-hidden h-72 mt-4 w-screen ">
+        <div className=" flex justify-center items-center  h-72 mt-4 overflow-hidden">
           <Card />
         </div>
         <div className="flex justify-center items-center  ">

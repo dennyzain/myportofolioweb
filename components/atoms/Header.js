@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaInstagram, FaEnvelope, FaLinkedin } from 'react-icons/fa';
-import useWindowSize from '../hooks/useWindowSize';
+import useWindowSize from '../utils/useWindowSize';
 import { Context } from '../context/useContext';
 
 export default function Header() {
@@ -53,7 +53,7 @@ const navbarAtTrue = (dispatch) => {
   return (
     <motion.div className="fixed bg-white text-black z-50  w-full h-full ">
       <div className="bg-transparent  flex justify-between w-full">
-        <div className="text-xs m-5">
+        <div className="text-xs  m-5">
           <p>Denny Abbas Zain</p>
         </div>
         <div
@@ -95,7 +95,7 @@ const navbarAtFalse = (state, dispatch, scrollPercent, circularScroll, scrollToT
   return (
     <motion.div>
       <div className=" bg-transparent  text-white flex fixed z-50  justify-between w-full">
-        <div className="text-xs m-5">
+        <div className="text-xs md:text-sm  m-5">
           <p onClick={scrollToTop}>Denny Abbas Zain</p>
         </div>
         {!state.isDesktop ? (
@@ -105,10 +105,10 @@ const navbarAtFalse = (state, dispatch, scrollPercent, circularScroll, scrollToT
             role="button"
             className="text-xs m-5"
           >
-            <p className="cursor-pointer">Menu</p>
+            <p className="cursor-pointer md:text-sm">Menu</p>
           </div>
         ) : (
-          <div className="flex flex-col text-xs text-right m-5">
+          <div className="flex flex-col text-xs md:text-sm text-right m-5">
             <a href="#about" className=" mb-2 cursor-pointer ">
               About
             </a>
@@ -143,20 +143,20 @@ const contactNav = (state) => {
           exit={{ x: -200, opacity: 0, transition: { duration: 0.7 } }}
           className="row-span-2 row-start-1 col-span-4 col-start-1 flex justify-self-center self-center md:flex-col md:row-start-2  md:justify-self-start md:col-span-2"
         >
-          <a className="mx-5 md:text-xs md:mb-2" href="https://www.instagram.com/abbas_dznx/">
+          <a className="mx-5 md:text-sm md:mb-2" href="https://www.instagram.com/abbas_dznx/">
             {state.isDesktop ? <p>Instagram</p> : <FaInstagram />}
           </a>
-          <a className="mx-5 md:text-xs md:mb-2" href="https://github.com/dennyzain">
+          <a className="mx-5 md:text-sm md:mb-2" href="https://github.com/dennyzain">
             {state.isDesktop ? <p>Github</p> : <FaGithub />}
           </a>
           <a
-            className="mx-5 md:text-xs md:mb-2"
+            className="mx-5 md:text-sm md:mb-2"
             href="https://www.linkedin.com/in/denny-abbas-zain-567552194/"
           >
             {state.isDesktop ? <p>LinkedIn</p> : <FaLinkedin />}
           </a>
           <a
-            className="mx-5 md:text-xs md:mb-2 animate-bounce"
+            className="mx-5 md:text-sm md:mb-2 animate-bounce"
             href="mailto:abbasdenny24@gmail.com"
           >
             {state.isDesktop ? <p>Email</p> : <FaEnvelope />}
