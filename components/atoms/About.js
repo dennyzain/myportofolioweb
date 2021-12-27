@@ -12,6 +12,7 @@ export default function About() {
         variants={container}
         initial="initial"
         whileInView="animate"
+        viewport={{ once: true }}
         id="about"
         className="flex flex-col mt-5 mx-6 md:mx-36 lg:mx-52 md:text-xs "
       >

@@ -32,7 +32,7 @@ function reducer(state, action) {
     case 'isOpenMenu':
       return { ...state, isOpen: !state.isOpen };
     case 'isDesktop':
-      return { ...state, isDesktop: action.payload };
+      return { ...state, isDesktop: action.payload, isContact: false };
     default:
       return state;
   }

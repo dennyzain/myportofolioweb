@@ -15,6 +15,7 @@ export default function Hero() {
         variants={container}
         initial="initial"
         whileInView="animate"
+        viewport={{ once: true }}
         className="flex justify-center items-center text-center md:mx-36 md:text-left h-screen "
       >
         <div className="flex flex-col md:mt-15  md:flex-row">

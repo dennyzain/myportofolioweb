@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
+import { Link } from 'react-scroll';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaInstagram, FaEnvelope, FaLinkedin } from 'react-icons/fa';
 import useWindowSize from '../utils/useWindowSize';
 import { Context } from '../context/useContext';
 
-export default function Header() {
+export default function Header({ children }) {
   const { state, dispatch } = useContext(Context);
   const circularScroll = useRef();
   const [scrollPercent, setScrollPercent] = useState(0);
@@ -33,23 +34,17 @@ export default function Header() {
     circularScroll.current.style.background = `conic-gradient(#753188 ${degrees}deg, #ddd ${degrees}deg)`;
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
   return (
     <>
       {state.isOpen
-        ? navbarAtTrue(dispatch)
-        : navbarAtFalse(state, dispatch, scrollPercent, circularScroll, scrollToTop)}
+        ? navbarAtOpen(dispatch)
+        : navbarAtClosed(state, dispatch, scrollPercent, circularScroll)}
+      {children}
     </>
   );
 }
 
-const navbarAtTrue = (dispatch) => {
+const navbarAtOpen = (dispatch) => {
   return (
     <motion.div className="fixed bg-white text-black z-50  w-full h-full ">
       <div className="bg-transparent  flex justify-between w-full">
@@ -65,38 +60,50 @@ const navbarAtTrue = (dispatch) => {
         </div>
       </div>
       <div className="text-5xl  -mt-8 flex justify-center items-center h-full flex-col">
-        <a
-          onClick={() => dispatch({ type: 'isOpenMenu' })}
-          href="#about"
+        <Link
           className=" mb-2 cursor-pointer "
+          onClick={() => dispatch({ type: 'isOpenMenu' })}
+          to="about"
         >
+          {' '}
           About
-        </a>
-        <a
-          onClick={() => dispatch({ type: 'isOpenMenu' })}
-          href="#projects"
+        </Link>
+        <Link
           className=" mb-2 cursor-pointer "
+          onClick={() => dispatch({ type: 'isOpenMenu' })}
+          to="projects"
         >
+          {' '}
           Projects
-        </a>
-        <a
-          onClick={() => dispatch({ type: 'isOpenMenu' })}
-          href="#contacts"
+        </Link>
+        <Link
           className=" mb-2 cursor-pointer "
+          onClick={() => dispatch({ type: 'isOpenMenu' })}
+          to="contacts"
         >
+          {' '}
           Contacts
-        </a>
+        </Link>
       </div>
     </motion.div>
   );
 };
 
-const navbarAtFalse = (state, dispatch, scrollPercent, circularScroll, scrollToTop) => {
+const navbarAtClosed = (state, dispatch, scrollPercent, circularScroll) => {
   return (
     <motion.div>
       <div className=" bg-transparent  text-white flex fixed z-50  justify-between w-full">
-        <div className="text-xs md:text-sm  m-5">
-          <p onClick={scrollToTop}>Denny Abbas Zain</p>
+        <div className="text-xs md:text-sm  m-5 cursor-pointer">
+          <p
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+              })
+            }
+          >
+            Denny Abbas Zain
+          </p>
         </div>
         {!state.isDesktop ? (
           <div
@@ -109,16 +116,18 @@ const navbarAtFalse = (state, dispatch, scrollPercent, circularScroll, scrollToT
           </div>
         ) : (
           <div className="flex flex-col text-xs md:text-sm text-right m-5">
-            <a href="#about" className=" mb-2 cursor-pointer ">
+            <Link className=" mb-2 cursor-pointer " to="about">
+              {' '}
               About
-            </a>
-            <a href="#projects" className="mb-2 cursor-pointer ">
+            </Link>
+            <Link className=" mb-2 cursor-pointer" to="projects">
+              {' '}
               Projects
-            </a>
+            </Link>
           </div>
         )}
       </div>
-      <div className="bottom-0 grid grid-cols-6 grid-rows-2  gap-2 mb-3 text-xl w-full z-40 fixed md:grid-rows-3 ">
+      <div className="bottom-0 grid grid-cols-6   gap-2 mb-3 text-xl w-full z-40 fixed  ">
         {contactNav(state)}
         <div
           ref={circularScroll}
@@ -156,7 +165,7 @@ const contactNav = (state) => {
             {state.isDesktop ? <p>LinkedIn</p> : <FaLinkedin />}
           </a>
           <a
-            className="mx-5 md:text-sm md:mb-2 animate-bounce"
+            className="mx-5 md:text-sm md:mb-2 animate-bounce "
             href="mailto:abbasdenny24@gmail.com"
           >
             {state.isDesktop ? <p>Email</p> : <FaEnvelope />}

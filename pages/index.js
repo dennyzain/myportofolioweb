@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 // local
 import Scroll from '../components/utils/SmoothScroll';
 import About from '../components/atoms/About';
@@ -11,14 +12,17 @@ import Contacts from '../components/atoms/Contacts';
 export default function Home() {
   return (
     <>
-      <Header />
-      <Scroll>
-        <Hero />
-        <About />
-        <Projects />
-        <Contacts />
-        <Footer />
-      </Scroll>
+      <motion.div exit={{ opacity: 0 }}>
+        <Header>
+          <Scroll>
+            <Hero />
+            <About />
+            <Projects />
+            <Contacts />
+            <Footer />
+          </Scroll>
+        </Header>
+      </motion.div>
     </>
   );
 }
