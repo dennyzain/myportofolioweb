@@ -23,7 +23,10 @@ export default function DetailProjects({ data }) {
             <FaArrowAltCircleLeft />
             <p className="ml-3">back</p>
           </button>
-          <motion.div whileHover={{ scale: 1.1 }} className="flex justify-center m-5">
+          <motion.div
+            whileHover={{ scale: 1.1, transition: { duration: 0.8 } }}
+            className="flex justify-center m-5"
+          >
             <Image
               src={data.image}
               alt={data.title}
