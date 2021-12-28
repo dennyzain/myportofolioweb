@@ -13,7 +13,7 @@ export const Projects = [
       { item: 'CSS' },
     ],
     github: 'https://github.com/dennyzain/MovieKu',
-    demo: 'https://github.com/dennyzain/MovieKu',
+    demo: 'https://movieku-dznx.netlify.app/',
   },
   {
     id: 2,
