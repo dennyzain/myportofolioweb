@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaInstagram, FaEnvelope, FaLinkedin } from 'react-icons/fa';
 import useWindowSize from '../utils/useWindowSize';
 import { Context } from '../context/useContext';
+import { container } from '../presetAnimate/animate';
 
 export default function Header({ children }) {
   const { state, dispatch } = useContext(Context);
@@ -46,46 +47,54 @@ export default function Header({ children }) {
 
 const navbarAtOpen = (dispatch) => {
   return (
-    <motion.div className="fixed bg-white text-black z-50  w-full h-full ">
-      <div className="bg-transparent  flex justify-between w-full">
-        <div className="text-xs  m-5">
-          <p>Denny Abbas Zain</p>
+    <AnimatePresence>
+      <motion.div
+        variants={container}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        className="fixed bg-white text-black z-50  w-full h-full "
+      >
+        <div className="bg-transparent  flex justify-between w-full">
+          <div className="text-xs  m-5">
+            <p>Denny Abbas Zain</p>
+          </div>
+          <div
+            onClick={() => dispatch({ type: 'isOpenMenu' })}
+            onKeyPress={() => dispatch({ type: 'isOpenMenu' })}
+            className="text-xs m-5"
+          >
+            <p className="cursor-pointer">Close</p>
+          </div>
         </div>
-        <div
-          onClick={() => dispatch({ type: 'isOpenMenu' })}
-          onKeyPress={() => dispatch({ type: 'isOpenMenu' })}
-          className="text-xs m-5"
-        >
-          <p className="cursor-pointer">Close</p>
+        <div className="text-5xl  -mt-8 flex justify-center items-center h-full flex-col">
+          <Link
+            className=" mb-2 cursor-pointer "
+            onClick={() => dispatch({ type: 'isOpenMenu' })}
+            to="about"
+          >
+            {' '}
+            About
+          </Link>
+          <Link
+            className=" mb-2 cursor-pointer "
+            onClick={() => dispatch({ type: 'isOpenMenu' })}
+            to="projects"
+          >
+            {' '}
+            Projects
+          </Link>
+          <Link
+            className=" mb-2 cursor-pointer "
+            onClick={() => dispatch({ type: 'isOpenMenu' })}
+            to="contacts"
+          >
+            {' '}
+            Contacts
+          </Link>
         </div>
-      </div>
-      <div className="text-5xl  -mt-8 flex justify-center items-center h-full flex-col">
-        <Link
-          className=" mb-2 cursor-pointer "
-          onClick={() => dispatch({ type: 'isOpenMenu' })}
-          to="about"
-        >
-          {' '}
-          About
-        </Link>
-        <Link
-          className=" mb-2 cursor-pointer "
-          onClick={() => dispatch({ type: 'isOpenMenu' })}
-          to="projects"
-        >
-          {' '}
-          Projects
-        </Link>
-        <Link
-          className=" mb-2 cursor-pointer "
-          onClick={() => dispatch({ type: 'isOpenMenu' })}
-          to="contacts"
-        >
-          {' '}
-          Contacts
-        </Link>
-      </div>
-    </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

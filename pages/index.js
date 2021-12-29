@@ -16,7 +16,7 @@ export default function Home() {
         <Header>
           <Scroll>
             <Hero />
-            <About />
+            {/* <About /> */}
             <Projects />
             <Contacts />
             <Footer />
