@@ -14,13 +14,11 @@ export default function Home() {
     <>
       <motion.div exit={{ opacity: 0 }}>
         <Header>
-          <Scroll>
-            <Hero />
-            {/* <About /> */}
-            <Projects />
-            <Contacts />
-            <Footer />
-          </Scroll>
+          <Hero />
+          <About />
+          <Projects />
+          <Contacts />
+          <Footer />
         </Header>
       </motion.div>
     </>
