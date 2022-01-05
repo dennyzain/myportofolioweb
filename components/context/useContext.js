@@ -11,19 +11,20 @@ const Context = createContext();
 const combineReducers =
   (...reducers) =>
   (state, action) => {
-    for (let i = 0; i < reducers.length; i++) state = reducers[i](state, action);
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < reducers.length; i++)
+      // eslint-disable-next-line no-param-reassign
+      state = reducers[i](state, action);
     return state;
   };
 
-const Provider = ({ children }) => {
+function Provider({ children }) {
+  // eslint-disable-next-line no-use-before-define
   const [state, dispatch] = useReducer(combineReducers(reducer), initialState);
+  // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value = { state, dispatch };
-  return (
-    <>
-      <Context.Provider value={value}>{children}</Context.Provider>
-    </>
-  );
-};
+  return <Context.Provider value={value}>{children}</Context.Provider>;
+}
 
 function reducer(state, action) {
   switch (action.type) {

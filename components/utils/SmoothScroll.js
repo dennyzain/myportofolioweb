@@ -1,40 +1,43 @@
-import React, { useRef, useState, useCallback, useLayoutEffect } from 'react';
+import { useRef, useState, useCallback, useLayoutEffect } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { useViewportScroll, useTransform, useSpring, motion } from 'framer-motion';
+import {
+  useViewportScroll,
+  useTransform,
+  useSpring,
+  motion,
+} from 'framer-motion';
 
-const SmoothScroll = ({ children }) => {
-  // scroll container
+function SmoothScroll({ children }) {
   const scrollRef = useRef(null);
 
-  // page scrollable height based on content length
   const [pageHeight, setPageHeight] = useState(0);
 
-  // update scrollable height when browser is resizing
   const resizePageHeight = useCallback((entries) => {
-    for (let entry of entries) {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const entry of entries) {
       setPageHeight(entry.contentRect.height);
     }
   }, []);
 
-  // observe when browser is resizing
   useLayoutEffect(() => {
-    const resizeObserver = new ResizeObserver((entries) => resizePageHeight(entries));
+    const resizeObserver = new ResizeObserver((entries) =>
+      resizePageHeight(entries)
+    );
+    // eslint-disable-next-line no-unused-expressions
     scrollRef && resizeObserver.observe(scrollRef.current);
     return () => resizeObserver.disconnect();
   }, [scrollRef, resizePageHeight]);
 
-  const { scrollY } = useViewportScroll(); // measures how many pixels user has scrolled vertically
-  // as scrollY changes between 0px and the scrollable height, create a negative scroll value...
-  // ... based on current scroll position to translateY the document in a natural way
+  const { scrollY } = useViewportScroll();
   const transform = useTransform(scrollY, [0, pageHeight], [0, -pageHeight]);
-  const physics = { damping: 15, mass: 0.27, stiffness: 55 }; // easing of smooth scroll
-  const spring = useSpring(transform, physics); // apply easing to the negative scroll value
+  const physics = { damping: 15, mass: 0.27, stiffness: 55 };
+  const spring = useSpring(transform, physics);
 
   return (
     <>
       <motion.div
         ref={scrollRef}
-        style={{ y: spring }} // translateY of scroll container using negative scroll value
+        style={{ y: spring }}
         className="w-full fixed left-0 top-0 overflow-hidden  will-change-transform"
       >
         {children}
@@ -43,6 +46,6 @@ const SmoothScroll = ({ children }) => {
       <div style={{ height: pageHeight }} />
     </>
   );
-};
+}
 
 export default SmoothScroll;

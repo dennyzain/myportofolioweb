@@ -1,4 +1,4 @@
-export const Projects = [
+const Projects = [
   {
     id: 1,
     title: 'MovieKu',
@@ -41,3 +41,5 @@ export const Projects = [
     demo: 'https://dennyzain.github.io/CRUD-Vanillajs-webStorage/',
   },
 ];
+
+export default Projects;

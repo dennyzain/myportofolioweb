@@ -1,9 +1,8 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 
-const Wrapper = (props) => {
-  return <span>{props.children}</span>;
-};
+function Wrapper({ children }) {
+  return <span>{children}</span>;
+}
 
 const tagMap = {
   paragraph: 'p',
@@ -11,7 +10,7 @@ const tagMap = {
   heading2: 'h2',
 };
 
-const AnimatedCharacters = (props) => {
+function AnimatedCharacters(props) {
   const item = {
     hidden: {
       y: '200%',
@@ -23,35 +22,34 @@ const AnimatedCharacters = (props) => {
     },
   };
 
-  const splitWords = props.text.split(' ');
+  const { text, type, style } = props;
+
+  const splitWords = text.split(' ');
 
   const words = [];
 
+  // eslint-disable-next-line no-restricted-syntax
   for (const [, item] of splitWords.entries()) {
     words.push(item.split(' '));
   }
 
-  words.map((word) => {
-    return word.push('\u00A0');
-  });
+  words.map((word) => word.push('\u00A0'));
 
   // Get the tag name from tagMap
-  const Tag = tagMap[props.type];
+  const Tag = tagMap[type];
   return (
     <Tag>
-      {words.map((word, index) => {
-        return (
-          <Wrapper key={index}>
-            <span className="overflow-hidden inline-block " key={index}>
-              <motion.span className={`inline-block ${props.style}`} variants={item}>
-                {word}
-              </motion.span>
-            </span>
-          </Wrapper>
-        );
-      })}
+      {words.map((word, index) => (
+        <Wrapper key={index}>
+          <span className="overflow-hidden inline-block " key={index}>
+            <motion.span className={`inline-block ${style}`} variants={item}>
+              {word}
+            </motion.span>
+          </span>
+        </Wrapper>
+      ))}
     </Tag>
   );
-};
+}
 
 export default AnimatedCharacters;

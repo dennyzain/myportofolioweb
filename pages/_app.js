@@ -1,6 +1,6 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { Provider } from '../components/context/useContext';
 import Meta from '../components/molecules/Meta';
 import Loading from '../components/molecules/Loading';
 import '../styles/index.css';
@@ -24,18 +24,14 @@ function MyApp({ Component, pageProps, router }) {
     };
   }, [router.events]);
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <Provider>
-          <Meta />
-          <AnimatePresence exitBeforeEnter>
-            <Component {...pageProps} key={router.route} />
-          </AnimatePresence>
-        </Provider>
-      )}
+      <Meta />
+      <AnimatePresence exitBeforeEnter>
+        <Component {...pageProps} key={router.route} />
+      </AnimatePresence>
     </>
   );
 }

@@ -1,11 +1,5 @@
-@font-face {
-  font-family: 'monument_extendedregular';
-  src: url('/regular-webfont.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
 * {
-  font-family: 'monument_extendedregular', 'Courier New', Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 html {

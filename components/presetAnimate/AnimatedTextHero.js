@@ -1,21 +1,16 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 
-// Word wrapper
-const Wrapper = (props) => {
-  // We'll do this to prevent wrapping of words using CSS
-  return <span className="whitespace-nowrap ">{props.children}</span>;
-};
+function Wrapper({ children }) {
+  return <span className="whitespace-nowrap ">{children}</span>;
+}
 
-// Map API "type" vaules to JSX tag names
 const tagMap = {
   paragraph: 'p',
   heading1: 'h1',
   heading2: 'h2',
 };
 
-// AnimatedCharacters
-const AnimatedCharacters = (props) => {
+function AnimatedCharacters(props) {
   const item = {
     hidden: {
       y: '200%',
@@ -27,39 +22,36 @@ const AnimatedCharacters = (props) => {
     },
   };
 
-  const splitWords = props.text.split(' ');
+  const { text, type, style } = props;
+
+  const splitWords = text.split(' ');
 
   const words = [];
 
+  // eslint-disable-next-line no-restricted-syntax
   for (const [, item] of splitWords.entries()) {
     words.push(item.split(''));
   }
 
-  words.map((word) => {
-    return word.push('\u00A0');
-  });
+  words.map((word) => word.push('\u00A0'));
 
-  const Tag = tagMap[props.type];
+  const Tag = tagMap[type];
 
   return (
     <Tag>
-      {words.map((word, index) => {
-        return (
-          <Wrapper key={index}>
-            {words[index].flat().map((element, index) => {
-              return (
-                <span className="overflow-hidden inline-block " key={index}>
-                  <motion.span className={`inline-block ${props.style}`} variants={item}>
-                    {element}
-                  </motion.span>
-                </span>
-              );
-            })}
-          </Wrapper>
-        );
-      })}
+      {words.map((word, index) => (
+        <Wrapper key={index}>
+          {words[index].flat().map((element, index) => (
+            <span className="overflow-hidden inline-block " key={index}>
+              <motion.span className={`inline-block ${style}`} variants={item}>
+                {element}
+              </motion.span>
+            </span>
+          ))}
+        </Wrapper>
+      ))}
     </Tag>
   );
-};
+}
 
 export default AnimatedCharacters;
