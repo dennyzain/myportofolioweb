@@ -22,9 +22,9 @@ export default function Hero() {
           {' '}
           {!state.isDesktop ? (
             <Image
-              src="/profilemobile.png"
+              src="/profilemobile.webp"
               quality={100}
-              alt="/profile.png"
+              alt="/profile.webp"
               width={150}
               priority
               height={150}
@@ -32,9 +32,9 @@ export default function Hero() {
             />
           ) : (
             <Image
-              src="/profile.png"
+              src="/profile.webp"
               quality={100}
-              alt="/profile.png"
+              alt="/profile.webp"
               width={150}
               layout="fixed"
               priority

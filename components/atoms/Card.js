@@ -77,7 +77,7 @@ export default function Card() {
             alt={Projects[imageIndex].title}
             blurDataURL={Projects[imageIndex].image}
             placeholder="blur"
-            quality={60}
+            quality={90}
             width={600}
             height={250}
           />

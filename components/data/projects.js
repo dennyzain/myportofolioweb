@@ -2,7 +2,7 @@ const Projects = [
   {
     id: 1,
     title: 'MovieKu',
-    image: '/movieku.png',
+    image: '/movieku.webp',
     desc: 'This website helps to see and search movie and consumed movie from TMDB API ',
     tech: [
       { item: 'Web Component' },
@@ -18,7 +18,7 @@ const Projects = [
   {
     id: 2,
     title: 'Notes App',
-    image: '/notes.png',
+    image: '/notes.webp',
     desc: 'This website to helps and save note on DB and login using firebase ',
     tech: [
       { item: 'React' },
@@ -34,7 +34,7 @@ const Projects = [
   {
     id: 3,
     title: 'BookshelfApps',
-    image: '/bookshelfvanilla.png',
+    image: '/bookshelfvanilla.webp',
     desc: 'this website CRUD book using Vanilla JS and project submission',
     tech: [{ item: 'VanillaJs' }, { item: 'SASS' }, { item: 'localStorage' }],
     github: 'https://github.com/dennyzain/CRUD-Vanillajs-webStorage',

@@ -11,11 +11,19 @@ import { Provider } from '../components/context/useContext';
 // import Projects from '../components/atoms/Projects';
 // import Contacts from '../components/atoms/Contacts';
 
-const About = dynamic(() => import('../components/atoms/About'));
-const Footer = dynamic(() => import('../components/atoms/Footer'));
-const Hero = dynamic(() => import('../components/atoms/Hero'));
-const Projects = dynamic(() => import('../components/atoms/Projects'));
-const Contacts = dynamic(() => import('../components/atoms/Contacts'));
+const About = dynamic(() => import('../components/atoms/About'), {
+  ssr: false,
+});
+const Footer = dynamic(() => import('../components/atoms/Footer'), {
+  ssr: false,
+});
+const Hero = dynamic(() => import('../components/atoms/Hero'), { ssr: false });
+const Projects = dynamic(() => import('../components/atoms/Projects'), {
+  ssr: false,
+});
+const Contacts = dynamic(() => import('../components/atoms/Contacts'), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
